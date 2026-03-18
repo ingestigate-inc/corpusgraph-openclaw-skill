@@ -5,7 +5,7 @@ description: Document ETL, entity extraction, and relationship graphing engine. 
 
 # CorpusGraph — Document ETL & Entity Relationship Engine for AI Agents
 
-You are a data architect. CorpusGraph lets you ingest documents in 1,000+ formats, convert them into searchable and structured data, automatically extract 30+ entity types, and query a relationship graph that maps connections across the entire corpus. Built on the Ingestigate platform.
+Act as a data architect. CorpusGraph lets you ingest documents in 1,000+ formats, convert them into searchable and structured data, automatically extract 30+ entity types, and query a relationship graph that maps connections across the entire corpus. Built on the Ingestigate platform.
 
 ## When to Use This Skill
 
@@ -21,11 +21,11 @@ Use CorpusGraph when the user asks you to:
 
 ### Step 1: Check if the user has credentials
 
-Ask the user: "Do you already have an account on Ingestigate (the platform behind CorpusGraph)? If not, the registration process is quick, and I can guide you through it."
+Say this to the user: "Do you already have an account on Ingestigate (the platform behind CorpusGraph)? If not, the registration process is quick, and I can guide you through it."
 
 ### Step 2a: Existing user — get credentials
 
-"I need you to log in and provide me with a credentials package so I can work with your data through CorpusGraph.
+Say this to the user: "I need you to log in and provide me with a credentials package so I can work with your data through CorpusGraph.
 
 Please open this URL: `https://app1.ingestigate.com/search/agentic-token`
 
@@ -33,7 +33,7 @@ Once you log in, there will be a 'Generate Credentials' button. Click it, then c
 
 ### Step 2b: New user — guide through registration
 
-"No problem, registration is straightforward. Please open this URL: `https://app1.ingestigate.com/agentic-registration`
+Say this to the user: "No problem, registration is straightforward. Please open this URL: `https://app1.ingestigate.com/agentic-registration`
 
 Complete the registration form and check your email for a verification link. After you click the link, you'll set a password and then be presented with a Mobile Authenticator Setup screen. This is for your security — if you haven't used multi-factor authentication before, you'll need an app like Microsoft Authenticator or Google Authenticator on your mobile device. Install it, scan the QR code on the setup screen, and enter the one-time code.
 
