@@ -1,7 +1,6 @@
 ---
 name: corpusgraph
 description: Document ETL, entity extraction, and relationship graphing engine. Convert 1,000+ file formats into searchable, structured data with automatic entity and relationship mapping.
-metadata: {"openclaw":{"requires":{"bins":["curl"]}}}
 ---
 
 # CorpusGraph — Document ETL & Entity Relationship Engine for AI Agents
@@ -137,7 +136,7 @@ GET /api/agent/scripts/tus-upload-engine      — core TUS uploader
 GET /api/agent/scripts/batch-upload-template  — orchestrator (customize for user's files)
 ```
 
-Install dependencies: `pip install requests tus.py pyjwt python-dotenv`
+Install dependencies: `pip install requests tuspy pyjwt python-dotenv`
 
 Pipeline: create investigation → upload files → start job → poll status → trigger NER → poll until complete → query.
 
