@@ -1,7 +1,7 @@
 {
   "name": "corpusgraph",
   "version": "1.0.0",
-  "description": "Document ETL and entity relationship engine for AI agents. Converts 1,000+ unstructured and structured formats (PDFs, emails, Office, Parquet, ORC, JSON, CSV) into searchable, machine-readable data. Automatically extracts 30+ entity types and builds a relationship graph showing connections across your entire file corpus. Structured data normalization for tabular files. Built on the Ingestigate platform.",
+  "description": "Document ETL and entity relationship engine for AI agents. CorpusGraph handles what agents can't do alone: OCR, parsing, entity extraction, and relationship graphing across 1,000+ file formats. Feed it PDFs, emails, images, Parquet, CSV, ORC, JSON, or Office docs — the platform normalizes everything into searchable, structured data, extracts 30+ entity types, and builds a relationship graph mapping connections across the entire corpus. Agents get clean, queryable results instead of struggling with raw files. Self-teaching: the agent fetches the full API guide before operating. Built on the Ingestigate platform.",
   "author": "Ingestigate Inc.",
   "license": "MIT-0",
   "homepage": "https://ingestigate.com/corpusgraph"

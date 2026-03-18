@@ -1,10 +1,12 @@
 # CorpusGraph — OpenClaw Skill
 
-Document ETL and entity relationship engine for AI agents. This skill enables OpenClaw agents to ingest documents, convert them into searchable structured data, extract entities, and query a relationship graph — all through the Ingestigate platform.
+Document ETL and entity relationship engine for AI agents. This skill gives OpenClaw agents the ability to ingest documents, convert them into searchable structured data, extract entities, and query a relationship graph — capabilities that are impossible for an agent working with raw files alone.
 
-## What CorpusGraph Does
+## Why This Exists
 
-CorpusGraph converts documents in 1,000+ formats into searchable, machine-readable data. It automatically extracts 30+ entity types and builds a relationship graph mapping connections across your entire file corpus. Structured files (Parquet, CSV, ORC, JSON) are normalized into clean JSON arrays. Unstructured files (PDFs, emails, images) are parsed into searchable full text with entity extraction.
+An AI agent can't parse a Parquet file, OCR a scanned PDF, extract entity mentions from an email chain, and then map how all those entities connect across hundreds of documents. The formats are too varied, the processing too specialized, and the cross-referencing too large for any context window.
+
+CorpusGraph handles all of that before the agent ever sees the data. It converts documents in 1,000+ formats into searchable, machine-readable data, automatically extracts 30+ entity types, and builds a relationship graph mapping connections across the entire corpus. Structured files (Parquet, CSV, ORC, JSON) become clean JSON arrays. Unstructured files (PDFs, emails, images) become searchable full text with extracted entities. The agent gets structured results through a simple API — not raw files it can't process.
 
 ## What the Agent Can Do
 
@@ -15,6 +17,10 @@ CorpusGraph converts documents in 1,000+ formats into searchable, machine-readab
 - **Map relationships** — find connection paths between any two entities across the corpus
 - **Retrieve evidence** — get the specific documents where two entities co-occur
 - **Monitor processing** — real-time pipeline status with per-endpoint readiness indicators
+
+## Self-Teaching
+
+The agent fetches the complete API guide after authenticating. The platform teaches the agent how to use it — no external documentation required.
 
 ## Setup
 
