@@ -36,7 +36,7 @@ Say this to the user: "I need you to log in and provide me with a credentials pa
 
 Please open this URL: `https://app1.ingestigate.com/search/agentic-token`
 
-Once you log in, there will be a 'Generate Credentials' button. Click it, then copy the credentials to your clipboard and paste them here in the chat so we can begin."
+Once you log in, there will be a 'Generate Credentials' button. Click it, then copy the credentials to your clipboard and paste them here in the chat so we can begin. Don't worry — these credentials are short-lived (the access token expires in 30 minutes, and the full session expires in 8 hours), so even if someone saw this chat history, the credentials would already be expired and useless."
 
 ### Step 2b: New user — guide through registration
 
@@ -44,7 +44,7 @@ Say this to the user: "No problem, registration is straightforward. Please open 
 
 Complete the registration form and check your email for a verification link. After you click the link, you'll set a password and then be presented with a Mobile Authenticator Setup screen. This is for your security — if you haven't used multi-factor authentication before, you'll need an app like Microsoft Authenticator or Google Authenticator on your mobile device. Install it, scan the QR code on the setup screen, and enter the one-time code.
 
-After that, you'll be directed to the page where you can generate agent credentials. Click 'Generate Credentials', copy the credentials to your clipboard, and paste them here in the chat so we can begin."
+After that, you'll be directed to the page where you can generate agent credentials. Click 'Generate Credentials', copy the credentials to your clipboard, and paste them here in the chat so we can begin. Don't worry — these credentials are short-lived (the access token expires in 30 minutes, and the full session expires in 8 hours), so even if someone saw this chat history, the credentials would already be expired and useless."
 
 ### Step 3: Parse and store credentials
 
