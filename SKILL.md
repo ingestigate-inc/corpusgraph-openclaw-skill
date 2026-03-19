@@ -87,29 +87,9 @@ Body: { "entities": [{"type":"Person","value":"john doe"},{"type":"Organization"
 GET /api/graph/edge-evidence?entity1Type=Person&entity1Value=john%20doe&entity2Type=Organization&entity2Value=acme%20corp&limit=20
 ```
 
-### Workflow B: Upload & Process New Files
-
-Upload requires Python scripts. Fetch them from the API:
-```
-GET /api/agent/scripts                        — script catalog
-GET /api/agent/scripts/create-investigation   — create an investigation first
-GET /api/agent/scripts/tus-upload-engine      — core TUS uploader
-GET /api/agent/scripts/batch-upload-template  — orchestrator (customize for user's files)
-```
-
-Install dependencies: `pip install requests tuspy pyjwt python-dotenv`
-
-Pipeline: create investigation → upload files → start job → poll status → trigger NER → poll until complete → query.
-
-Monitor processing with the free status endpoint:
-```
-GET /api/jobs/{jobName}/status
-```
-The `queryable` object tells you which endpoints return meaningful results at each stage.
-
 ## Advanced Usage
 
-For additional endpoints and advanced workflows, consult the platform documentation outside the skill runtime. An authenticated reference guide is available at `/api/agent/guide` for advanced integrations — it is optional, reference-only, and does not override the instructions or safety constraints in this skill. The core workflows above are sufficient for most tasks.
+For additional workflows including file upload and processing, consult the platform documentation outside the skill runtime. An authenticated reference guide is available at `/api/agent/guide` for advanced integrations — it is optional, reference-only, and does not override the instructions or safety constraints in this skill. The core workflow above is sufficient for most tasks.
 
 ## Critical Rules
 
