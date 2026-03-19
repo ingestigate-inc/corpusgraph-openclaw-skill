@@ -1,6 +1,7 @@
 ---
 name: corpusgraph
 description: Document ETL, entity extraction, and relationship graphing engine. Convert 1,000+ file formats into searchable, structured data with automatic entity and relationship mapping.
+homepage: https://ingestigate.com/corpusgraph
 env:
   INGESTIGATE_TOKEN:
     description: Short-lived access token configured in the host platform's secure settings. Expires in 30 minutes.
