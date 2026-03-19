@@ -26,9 +26,10 @@ The agent fetches the complete API guide after authenticating. The platform teac
 
 1. **Create an account** at [app1.ingestigate.com/agentic-registration](https://app1.ingestigate.com/agentic-registration) or log in if you already have one.
 2. **Generate credentials** at [app1.ingestigate.com/search/agentic-token](https://app1.ingestigate.com/search/agentic-token).
-3. **Set the environment variable** with your access token:
+3. **Set the environment variables** from the credential JSON:
    ```bash
-   export INGESTIGATE_TOKEN="<your access token>"
+   export INGESTIGATE_TOKEN="<access_token from credential JSON>"
+   export INGESTIGATE_BASE_URL="<api_base_url from credential JSON>"
    ```
 
 The agent will guide you through this process if you haven't set it up yet.

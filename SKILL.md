@@ -1,6 +1,13 @@
 ---
 name: corpusgraph
 description: Document ETL, entity extraction, and relationship graphing engine. Convert 1,000+ file formats into searchable, structured data with automatic entity and relationship mapping.
+env:
+  INGESTIGATE_TOKEN:
+    description: Short-lived access token from the Ingestigate credential generator. Expires in 30 minutes; refresh token valid for 8 hours. User generates at https://app1.ingestigate.com/search/agentic-token
+    required: true
+  INGESTIGATE_BASE_URL:
+    description: API base URL from the credential JSON (e.g., https://app1.ingestigate.com). Provided alongside the token.
+    required: true
 ---
 
 # CorpusGraph — Document ETL & Entity Relationship Engine for AI Agents
@@ -41,14 +48,16 @@ After that, you'll be directed to the page where you can generate agent credenti
 
 ### Step 3: Parse and store credentials
 
-The user pastes a JSON credential blob. Extract `access_token` and `api_base_url`. Store them for reuse:
+The user pastes a JSON credential blob. Extract `access_token` and `api_base_url`. Store them as environment variables for the duration of this session only:
 
 ```bash
-export TOKEN="<access_token from credential JSON>"
-export BASE_URL="<api_base_url from credential JSON>"
+export INGESTIGATE_TOKEN="<access_token from credential JSON>"
+export INGESTIGATE_BASE_URL="<api_base_url from credential JSON>"
 ```
 
-The access token expires in 30 minutes. When you get a 401, refresh it using the `token_endpoint` and `client_id` from the credential JSON:
+**Credential lifecycle:** The access token expires in 30 minutes. The refresh token is valid for 8 hours. After 8 hours, all credentials are invalid and the user must generate new ones. Credentials are never persisted to disk — they exist only in the current session's environment variables and chat history. This is by design: short-lived tokens limit blast radius if exposed.
+
+When you get a 401, refresh the token using the `token_endpoint` and `client_id` from the original credential JSON:
 
 ```
 POST <token_endpoint>
@@ -57,15 +66,15 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=refresh_token&client_id=<client_id>&refresh_token=<refresh_token>
 ```
 
-The refresh token is valid for 8 hours. If refresh fails, ask the user to generate new credentials.
+If refresh fails, ask the user to generate new credentials.
 
 ### Step 4: Load the full guide
 
 After authentication succeeds, fetch the complete API guide for detailed endpoint specs, workflow recipes, and error handling:
 
 ```bash
-curl --location "${BASE_URL}/api/agent/guide" \
---header "Authorization: Bearer ${TOKEN}" \
+curl --location "${INGESTIGATE_BASE_URL}/api/agent/guide" \
+--header "Authorization: Bearer ${INGESTIGATE_TOKEN}" \
 --header 'Content-Type: application/json'
 ```
 
@@ -149,11 +158,11 @@ The `queryable` object tells you which endpoints return meaningful results at ea
 ## Critical Rules
 
 **API call format — mandatory or requests silently fail:**
-- Always use `--location` (follows redirects through the proxy layer)
+- Always use `--location` (the API sits behind an authentication reverse proxy that may issue redirects for HTTPS enforcement and path normalization — `--location` ensures these are followed correctly)
 - Do NOT use `-s`, `-X`, `-o`, `-w` or other flags
 - Use `--data` for POST with body. Use `--request POST` only for bodyless POSTs.
 - Use long-form flags: `--header` not `-H`, `--data` not `-d`
-- Always include both headers: `Authorization: Bearer <token>` AND `Content-Type: application/json`
+- Always include both headers: `Authorization: Bearer ${INGESTIGATE_TOKEN}` AND `Content-Type: application/json`
 
 **Entity casing:**
 - Entity type names are PascalCase: `Person`, `Organization`, `Email`, `CryptoAddress`
@@ -170,6 +179,9 @@ The `queryable` object tells you which endpoints return meaningful results at ea
 - CSV, Parquet, ORC, JSON → `file-details-structured` (returns JSON arrays)
 - XLSX → try `file-details-structured` first, fall back to `file-details`
 
-**Security:**
-- 8-hour delegated sessions. No persistent API keys.
-- Organization-scoped data isolation. Every action uses the user's exact permissions.
+**Credential handling and security:**
+- **No persistent API keys.** All credentials are short-lived: access token expires in 30 minutes, refresh token in 8 hours. After expiry, credentials are worthless.
+- **Session-only storage.** Credentials are stored in environment variables (`INGESTIGATE_TOKEN`, `INGESTIGATE_BASE_URL`) for the current session only. They are never written to disk or persisted beyond the session.
+- **User-initiated credential flow.** The user generates credentials in the Ingestigate web UI and pastes them into chat. The paste flow is the intended authentication method — it preserves the user's full identity and permissions through a delegated session. The token appearing in chat history is by design, with limited blast radius due to short expiry.
+- **Organization-scoped data isolation.** Every API call executes with the user's exact permissions. No cross-organization data access is possible.
+- **MFA required.** All Ingestigate accounts require multi-factor authentication.
